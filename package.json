@@ -1,0 +1,37 @@
+{
+  "name": "ex10-persistent-encoder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "license": "AGPL-version-3.0",
+  "private": false,
+  "engines": {
+    "node": ">= 14.0.0",
+    "npm": ">= 6.0.0"
+  },
+  "homepage": "",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "bugs": "",
+  "keywords": [],
+  "author": {
+    "name": "ADD YOUR NAME HERE",
+    "email": "ADD YOUR EMAIL HERE",
+    "spireid": "ADD YOUR SPIRE ID HERE"
+  },
+  "contributors": [],
+  "scripts": {
+    "start": "http-server src -p 3000 -c-1 -o -s",
+    "submit": "node js/submit.js",
+    "build": "npm run dist && docker build -t timdrichards/autograder .",
+    "test-it": "npm run build && docker run -it --entrypoint bash timdrichards/autograder",
+    "points": "npm run build && docker run timdrichards/autograder ./source/bin/score"
+  },
+  "dependencies": {
+    "archiver": "^6.0.1",
+    "http-server": "^14.1.1"
+  }
+}
