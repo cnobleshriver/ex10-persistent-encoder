@@ -19,37 +19,49 @@ decodeTextBox.addEventListener("keyup", colorDecodedTextBox);
 // TASK #3: Add event handlers for cypher key, encode, and decode text boxes.
 //   Every time the user types in a character, the cypher key and the
 //   encoded/decoded text boxes should have their state saved.
+keyTextInput.addEventListener("keyup", saveState);
+encodeTextBox.addEventListener("keyup", saveState);
+decodeTextBox.addEventListener("keyup", saveState);
 
 // TASK #3: Add an event handler for the clear button.
 //   When the user clicks the clear button, the state should be cleared.
+const clearButton = document.getElementById("clear-state");
+clearButton.addEventListener("click", clearState);
 
 // TASK #3: Call restoreState() to restore the state of the text boxes.
 //   This will restore the state of the app when loaded/reloaded.
-
-
+restoreState();
 
 function saveState() {
   // TASK #3: Save the state of the cypher key, encode, and decode text boxes.
   //   Use the localStorage object to store the state. Make sure you use
   //   JSON.stringify() to convert the state to a string.
-
-  
+  let state = {
+    key: keyTextInput.value,
+    encode: encodeTextBox.value,
+    decode: decodeTextBox.value
+  };
+  localStorage.setItem("state", JSON.stringify(state));
 }
 
 function restoreState() {
   // TASK #3: Restore the state of cypher key, encode, and decode text boxes.
   //   Use the localStorage object to restore the state. Make sure you use the
   //   JSON.parse() method to convert the state string to an object.
-
-  
+  let state = JSON.parse(localStorage.getItem("state"));
+  keyTextInput.value = state.key;
+  encodeTextBox.value = state.encode;
+  decodeTextBox.value = state.decode;
 }
 
 function clearState() {
   // TASK #3: Clear the state of the cypher key, encode, and decode text boxes.
   //   Use the localStorage object to clear the state. You can use the
   //   remoteItem() method to clear the state.
-
-  
+  keyTextInput.value = "";
+  encodeTextBox.value = "";
+  decodeTextBox.value = "";
+  localStorage.removeItem("state")
 }
 
 /**
