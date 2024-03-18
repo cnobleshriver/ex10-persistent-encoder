@@ -49,9 +49,14 @@ function restoreState() {
   //   Use the localStorage object to restore the state. Make sure you use the
   //   JSON.parse() method to convert the state string to an object.
   let state = JSON.parse(localStorage.getItem("state"));
-  keyTextInput.value = state.key;
-  encodeTextBox.value = state.encode;
-  decodeTextBox.value = state.decode;
+  if (state !== null) {
+    keyTextInput.value = state.key;
+    encodeTextBox.value = state.encode;
+    decodeTextBox.value = state.decode;
+    validateKeyTextInput();
+    colorEncodedTextBox();
+    colorDecodedTextBox();
+  }
 }
 
 function clearState() {
